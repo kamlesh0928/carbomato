@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_green"
+    android:orientation="vertical"
+    android:padding="20dp"
+    tools:context=".Login">
+
+    <ImageView
+        android:id="@+id/login_image"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/splash_page_image"
+        android:transitionName="splash_image" />
+
+    <TextView
+        android:id="@+id/login_welcome_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/bungee_regular"
+        android:text="@string/hello_nwelcome_back"
+        android:textColor="@color/black"
+        android:textSize="30sp"
+        android:transitionName="welcome" />
+
+    <TextView
+        android:id="@+id/login_small_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto_black"
+        android:text="@string/sign_in_to_continue"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:transitionName="login_text" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:orientation="vertical">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/l_email"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            android:transitionName="l_username">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/password"
+            android:transitionName="l_password"
+            app:passwordToggleEnabled="true">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/sign_in_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="5dp"
+            android:background="#000"
+            android:fontFamily="@font/roboto_black"
+            android:text="@string/sign_in"
+            android:textColor="#fff"
+            android:textSize="20sp"
+            android:transitionName="l_sign_in" />
+
+        <Button
+            android:id="@+id/btn_sign_up"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:layout_margin="5dp"
+            android:background="#00000000"
+            android:elevation="0dp"
+            android:fontFamily="@font/roboto_black"
+            android:text="@string/dont_have_an_account_sign_up"
+            android:textColor="#000"
+            android:textSize="15sp"
+            android:transitionName="l_sign_up"
+            tools:ignore="RtlHardcoded" />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/change_language"
+            android:text="@string/change_language"
+            android:textSize="20sp"
+            android:fontFamily="@font/roboto_black"
+            android:textColor="@color/white"
+            android:transitionName="l_change_language" />
+
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Carbomato</string>
+    <string name="welcome_to_carbomato_nhealthy_plants_happy_you">कार्बोमेटो में आपका स्वागत है ्वस्थ पौधे, आपको शुभकामनाएँ</string>
+    <string name="username">उपयोगकर्ता नाम</string>
+    <string name="password">पासवर्ड</string>
+    <string name="login">लॉग इन करें</string>
+    <string name="confirm_password">पासवर्ड की पुष्टि कीजिये</string>
+    <string name="already_have_an_account_sign_in">पहले से ही एक खाता है? साइन इन करें</string>
+    <string name="hello_world">नमस्ते दुनिया</string>
+    <string name="welcome_back">पुनः स्वागत है</string>
+    <string name="sign_in_to_continue">जारी रखने के लिए साइन इन करें</string>
+    <string name="hello_nwelcome_back">नमस्ते, वापसी पर स्वागत है</string>
+    <string name="sign_in">साइन इन करें</string>
+    <string name="dont_have_an_account_sign_up">कोई खाता नहीं है? साइन अप करें</string>
+    <string name="hello">नमस्ते,</string>
+    <string name="sign_up_to_start">आरंभ करने के लिए साइन अप करें</string>
+    <string name="sign_up">साइन अप करें</string>
+    <string name="change_language">भाषा बदलें</string>
+    <string name="email">ईमेल</string>
+    <string name="capture_image">छवि कैप्चर करें</string>
+    <string name="upload_image">तस्वीर डालिये</string>
+    <string name="open_gallery">गैलरी खोलें</string>
+    <string name="open_camera">कैमरा खोलो</string>
+    <string name="plant_health_details">पौधों का स्वास्थ्य विवरण</string>
+</resources>

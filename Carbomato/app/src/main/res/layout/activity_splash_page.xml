@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#2a7545"
+    tools:context=".SplashPage">
+
+
+    <ImageView
+        android:id="@+id/splash_page_imageView"
+        android:layout_width="match_parent"
+        android:layout_height="315dp"
+        android:layout_weight="1"
+        app:srcCompat="@drawable/splash_page_image"
+        android:transitionName="splash_image"/>
+
+    <TextView
+        android:id="@+id/splash_page_textView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fontFamily="serif"
+        android:layout_gravity="top"
+        android:textAlignment="center"
+        android:paddingTop="30dp"
+        android:text="@string/welcome_to_carbomato_nhealthy_plants_happy_you"
+        android:textColor="#ffffff"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:transitionName="splash_text"
+        tools:ignore="RtlCompat" />
+
+</LinearLayout>
