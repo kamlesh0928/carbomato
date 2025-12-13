@@ -2,33 +2,19 @@ package com.example.carbomato;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import android.text.TextUtils;
-import android.view.View;
-import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
 
 public class SignUp extends AppCompatActivity {
+    TextInputLayout tilUsername, tilEmail, tilPassword, tilConfirm;
+    Button btnSignUp, btnLogin;
 
-    ImageView reg_image;
-    TextView welcome, sign_up_text;
-    TextInputLayout regUsername, regEmail, regPassword, regConfirmPassword;
-    Button signUp_btn, reg_to_login_btn;
-
+    // Firebase
     FirebaseDatabase firebaseDatabase;
     DatabaseReference reference;
     HelperClass helperClass;
@@ -36,91 +22,71 @@ public class SignUp extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_sign_up);
 
+        // Initialize Firebase
         firebaseDatabase = FirebaseDatabase.getInstance();
-        reference = firebaseDatabase.getReference();
+        reference = firebaseDatabase.getReference("users");
         helperClass = new HelperClass();
 
+        tilUsername = findViewById(R.id.tilUsername);
+        tilEmail = findViewById(R.id.tilEmail);
+        tilPassword = findViewById(R.id.tilPassword);
+        tilConfirm = findViewById(R.id.tilConfirmPassword);
 
-        reg_image = findViewById(R.id.image_view);
-        welcome = findViewById(R.id.reg_welcome_text);
-        sign_up_text = findViewById(R.id.reg_small_text);
-        regUsername = findViewById(R.id.reg_username);
-        regEmail = findViewById(R.id.reg_email);
-        regPassword = findViewById(R.id.reg_password);
-        regConfirmPassword = findViewById(R.id.reg_confirm_password);
-        signUp_btn = findViewById(R.id.second_last);
-        reg_to_login_btn = findViewById(R.id.last);
+        btnSignUp = findViewById(R.id.btn_sign_up);
+        btnLogin = findViewById(R.id.btn_login);
 
-        reg_to_login_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(SignUp.this, Login.class);
-                startActivity(intent);
-            }
+        // Navigate to Login
+        btnLogin.setOnClickListener(v -> {
+            Intent intent = new Intent(SignUp.this, Login.class);
+            startActivity(intent);
+            finish();
         });
 
-        signUp_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                registerUser();
-            }
-        });
+        // Perform Sign Up
+        btnSignUp.setOnClickListener(v -> registerUser());
     }
 
     private void registerUser() {
+        String username = (tilUsername.getEditText() != null) ? tilUsername.getEditText().getText().toString().trim() : "";
+        String email = (tilEmail.getEditText() != null) ? tilEmail.getEditText().getText().toString().trim() : "";
+        String password = (tilPassword.getEditText() != null) ? tilPassword.getEditText().getText().toString().trim() : "";
+        String confirmPassword = (tilConfirm.getEditText() != null) ? tilConfirm.getEditText().getText().toString().trim() : "";
 
-        String username = regUsername.getEditText().toString().trim();
-        String email = regUsername.getEditText().toString().trim();
-        String password = regUsername.getEditText().toString().trim();
-        String confirmPassword = regConfirmPassword.getEditText().toString().trim();
-
+        // Validation
         if(TextUtils.isEmpty(username)) {
-
-            Toast.makeText(this, "Enter Username", Toast.LENGTH_SHORT).show();
+            tilUsername.setError("Enter Username");
             return;
-        }
+        } else { tilUsername.setError(null); }
 
         if(TextUtils.isEmpty(email)) {
-
-            Toast.makeText(this, "Enter Email", Toast.LENGTH_SHORT).show();
+            tilEmail.setError("Enter Email");
             return;
-        }
+        } else { tilEmail.setError(null); }
 
         if(TextUtils.isEmpty(password)) {
-
-            Toast.makeText(this, "Enter Password", Toast.LENGTH_SHORT).show();
+            tilPassword.setError("Enter Password");
             return;
-        }
+        } else { tilPassword.setError(null); }
 
-        if(password.equals(confirmPassword))
-        {
-            Toast.makeText(this,"Password Not Match",Toast.LENGTH_SHORT).show();
+        if(!password.equals(confirmPassword)) {
+            tilConfirm.setError("Passwords do not match");
             return;
-        }
+        } else { tilConfirm.setError(null); }
 
+        // Save to Firebase
         helperClass.setUSERNAME(username);
         helperClass.setEMAIL(email);
         helperClass.setPASSWORD(password);
 
-        reference.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                reference.setValue(helperClass);
+        reference.child(username).setValue(helperClass);
 
-                Toast.makeText(SignUp.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
+        Toast.makeText(SignUp.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
 
-                Intent intent = new Intent(SignUp.this, MainActivity.class);
-                startActivity(intent);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(SignUp.this, "Registration Failed", Toast.LENGTH_SHORT).show();
-            }
-        });
+        // Go to Main Activity
+        Intent intent = new Intent(SignUp.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

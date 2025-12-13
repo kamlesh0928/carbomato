@@ -26,4 +26,5 @@
     <string name="precaution" translatable="false">Precaution</string>
     <string name="open_camera">Open Camera</string>
     <string name="plant_health_details">Plant Health Details</string>
+    <string name="create_an_account">Create an Account</string>
 </resources>

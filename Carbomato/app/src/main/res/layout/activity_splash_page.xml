@@ -1,38 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#2a7545"
-    tools:context=".SplashPage">
+    android:background="@color/primary_green">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/logo_container"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        app:cardCornerRadius="110dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="@color/surface_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.4">
 
-    <ImageView
-        android:id="@+id/splash_page_imageView"
-        android:layout_width="match_parent"
-        android:layout_height="315dp"
-        android:layout_weight="1"
-        app:srcCompat="@drawable/splash_page_image"
-        android:transitionName="splash_image"/>
+        <ImageView
+            android:id="@+id/splash_page_imageView"
+            android:layout_width="220dp"
+            android:layout_height="220dp"
+            app:cardCornerRadius="110dp"
+            android:layout_gravity="center"
+            android:src="@drawable/splash_page_image" />
+    </androidx.cardview.widget.CardView>
 
     <TextView
         android:id="@+id/splash_page_textView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:fontFamily="serif"
-        android:layout_gravity="top"
-        android:textAlignment="center"
-        android:paddingTop="30dp"
-        android:text="@string/welcome_to_carbomato_nhealthy_plants_happy_you"
-        android:textColor="#ffffff"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        android:transitionName="splash_text"
-        tools:ignore="RtlCompat" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/bungee_regular"
+        android:text="CARBOMATO"
+        android:textColor="@color/text_on_primary"
+        android:textSize="34sp"
+        android:letterSpacing="0.1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/logo_container" />
 
-</LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="serif"
+        android:text="Healthy Plants, Happy You"
+        android:textColor="@color/primary_light"
+        android:textSize="16sp"
+        android:letterSpacing="0.05"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/splash_page_textView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

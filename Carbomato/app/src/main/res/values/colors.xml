@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="primary_green">#155D27</color>
+    <color name="primary_light">#A5D6A7</color>
+    <color name="accent_orange">#F57F17</color>
+    <color name="background_cream">#F7F9F7</color>
+    <color name="surface_white">#FFFFFF</color>
+    <color name="text_bold">#1A1C19</color>
+    <color name="text_muted">#586358</color>
+    <color name="text_on_primary">#FFFFFF</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="purple">#8692f7</color>
-    <color name="background_green">#2a7545</color>
+    <color name="divider">#E0E0E0</color>
 </resources>
