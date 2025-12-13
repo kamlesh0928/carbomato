@@ -41,4 +41,14 @@ cutting edge technology to help users monitor plant health efficiently.
 
 ---
 
-If you found this project helpful or interesting, consider supporting it by sharing or contributing.
+## Contributions
+
+Contributions are welcome! If you'd like to contribute, please fork the repository and create a pull request.
+
+---
+
+## License
+
+This project is licensed under the MIT License. Please see the [LICENSE](LICENSE) file for more information.
+
+---
