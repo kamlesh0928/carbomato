@@ -20,3 +20,4 @@ out/
 captures/
 .DS_Store
 Thumbs.db
+google-services.json
