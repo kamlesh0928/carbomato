@@ -23,8 +23,9 @@ class MainViewModel : ViewModel() {
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
+                // Fixed model name
                 val generativeModel = GenerativeModel(
-                    modelName = "gemini-2.5-flash",
+                    modelName = "gemini-1.5-flash",
                     apiKey = BuildConfig.GEMINI_API_KEY
                 )
 

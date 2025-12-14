@@ -7,16 +7,14 @@ import android.widget.Button;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class SignUp extends AppCompatActivity {
     TextInputLayout tilUsername, tilEmail, tilPassword, tilConfirm;
     Button btnSignUp, btnLogin;
 
     // Firebase
-    FirebaseDatabase firebaseDatabase;
-    DatabaseReference reference;
+    FirebaseFirestore db;
     HelperClass helperClass;
 
     @Override
@@ -24,9 +22,8 @@ public class SignUp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        // Initialize Firebase
-        firebaseDatabase = FirebaseDatabase.getInstance();
-        reference = firebaseDatabase.getReference("users");
+        // Initialize Firestore
+        db = FirebaseFirestore.getInstance();
         helperClass = new HelperClass();
 
         tilUsername = findViewById(R.id.tilUsername);
@@ -75,18 +72,21 @@ public class SignUp extends AppCompatActivity {
             return;
         } else { tilConfirm.setError(null); }
 
-        // Save to Firebase
+        // Save to Firebase Firestore
         helperClass.setUSERNAME(username);
         helperClass.setEMAIL(email);
         helperClass.setPASSWORD(password);
 
-        reference.child(username).setValue(helperClass);
-
-        Toast.makeText(SignUp.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
-
-        // Go to Main Activity
-        Intent intent = new Intent(SignUp.this, MainActivity.class);
-        startActivity(intent);
-        finish();
+        db.collection("users").document(username).set(helperClass)
+                .addOnSuccessListener(aVoid -> {
+                    Toast.makeText(SignUp.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
+                    // Go to Main Activity
+                    Intent intent = new Intent(SignUp.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                })
+                .addOnFailureListener(e -> {
+                    Toast.makeText(SignUp.this, "Registration Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
     }
 }
