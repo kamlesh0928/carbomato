@@ -1,14 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.Carbomato" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+    <style name="Theme.Carbomato" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/primary_green</item>
+        <item name="colorPrimaryVariant">@color/primary_light</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <item name="android:statusBarColor">@color/primary_green</item>
+        <item name="android:windowLightStatusBar">false</item> <item name="android:forceDarkAllowed" tools:targetApi="q">false</item>
+        <item name="colorSurface">@color/surface_white</item>
+        <item name="android:textColorPrimary">@color/text_bold</item>
     </style>
-
-    <style name="Theme.Carbomato" parent="Base.Theme.Carbomato">
-
-        <item name="android:windowContentTransitions">true</item>
-
-    </style>
-
 </resources>

@@ -65,7 +65,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/text_bold"
+                    android:textColorHint="@color/text_muted" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -82,7 +84,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:textColor="@color/text_bold"
+                    android:textColorHint="@color/text_muted" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -92,6 +96,7 @@
                 android:layout_marginTop="32dp"
                 android:backgroundTint="@color/primary_green"
                 android:text="@string/sign_in"
+                android:textColor="@color/white"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:cornerRadius="12dp" />
@@ -102,7 +107,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="@string/create_an_account"
+                android:text="Create an Account"
                 android:textColor="@color/text_muted" />
 
         </LinearLayout>

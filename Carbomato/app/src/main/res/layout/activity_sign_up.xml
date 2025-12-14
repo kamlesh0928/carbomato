@@ -51,7 +51,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPersonName" />
+                    android:inputType="textPersonName"
+                    android:textColor="@color/text_bold"
+                    android:textColorHint="@color/text_muted" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -65,7 +67,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress" />
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/text_bold"
+                    android:textColorHint="@color/text_muted" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -80,7 +84,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:textColor="@color/text_bold"
+                    android:textColorHint="@color/text_muted" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -95,7 +101,9 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="textPassword" />
+                    android:inputType="textPassword"
+                    android:textColor="@color/text_bold"
+                    android:textColorHint="@color/text_muted" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
@@ -105,6 +113,7 @@
                 android:layout_marginTop="24dp"
                 android:backgroundTint="@color/primary_green"
                 android:text="@string/sign_up"
+                android:textColor="@color/white"
                 android:textStyle="bold"
                 app:cornerRadius="12dp" />
 
