@@ -1,5 +1,6 @@
 package com.example.carbomato;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -22,6 +23,7 @@ public class SignUp extends AppCompatActivity {
 
     FirebaseFirestore db;
     FirebaseAuth firebaseAuth;
+    ProgressDialog progressDialog; // Add this
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,12 +33,18 @@ public class SignUp extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         firebaseAuth = FirebaseAuth.getInstance();
 
+        // Initialize Views
         tilUsername = findViewById(R.id.tilUsername);
         tilEmail = findViewById(R.id.tilEmail);
         tilPassword = findViewById(R.id.tilPassword);
         tilConfirm = findViewById(R.id.tilConfirmPassword);
         btnSignUp = findViewById(R.id.btn_sign_up);
         btnLogin = findViewById(R.id.btn_login);
+
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setTitle("Creating Account");
+        progressDialog.setMessage("Please wait while we check your credentials...");
+        progressDialog.setCancelable(false); // User cannot click outside to cancel
 
         btnLogin.setOnClickListener(v -> {
             Intent intent = new Intent(SignUp.this, Login.class);
@@ -57,41 +65,35 @@ public class SignUp extends AppCompatActivity {
         if (TextUtils.isEmpty(username)) {
             tilUsername.setError("Enter Username");
             return;
-        } else {
-            tilUsername.setError(null);
-        }
+        } else { tilUsername.setError(null); }
 
         if (TextUtils.isEmpty(email)) {
             tilEmail.setError("Enter Email");
             return;
-        } else {
-            tilEmail.setError(null);
-        }
+        } else { tilEmail.setError(null); }
 
         if (TextUtils.isEmpty(password)) {
             tilPassword.setError("Enter Password");
             return;
-        } else {
-            tilPassword.setError(null);
-        }
+        } else { tilPassword.setError(null); }
 
         if (!password.equals(confirmPassword)) {
             tilConfirm.setError("Passwords do not match");
             return;
-        } else {
-            tilConfirm.setError(null);
-        }
+        } else { tilConfirm.setError(null); }
+
+        progressDialog.show();
 
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
-
                         Map<String, Object> userMap = new HashMap<>();
                         userMap.put("username", username);
                         userMap.put("email", email);
 
                         db.collection("users").document(username).set(userMap)
                                 .addOnSuccessListener(aVoid -> {
+                                    progressDialog.dismiss();
                                     Toast.makeText(SignUp.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
 
                                     Intent intent = new Intent(SignUp.this, MainActivity.class);
@@ -100,10 +102,12 @@ public class SignUp extends AppCompatActivity {
                                     finish();
                                 })
                                 .addOnFailureListener(e -> {
+                                    progressDialog.dismiss();
                                     Toast.makeText(SignUp.this, "Database Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                                 });
 
                     } else {
+                        progressDialog.dismiss();
                         if (task.getException() != null) {
                             Toast.makeText(SignUp.this, "Registration Failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
                         }
