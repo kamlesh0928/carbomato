@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Carbomato</string>
-    <string name="welcome_to_carbomato_nhealthy_plants_happy_you">Carbomato मध्ये आपले स्वागत आहे निरोगी वनस्पती तुम्हाला शुभेच्छा</string>
+    <string name="app_tagline">निरोगी वनस्पती, आनंदी तुम्ही</string>
+    <string name="welcome_to_carbomato_nhealthy_plants_happy_you">Carbomato मध्ये आपले स्वागत आहे\nनिरोगी वनस्पती तुम्हाला शुभेच्छा</string>
     <string name="username">वापरकर्तानाव</string>
     <string name="password">पासवर्ड</string>
     <string name="login">लॉगिन करा</string>
@@ -9,7 +10,7 @@
     <string name="already_have_an_account_sign_in">आधीपासूनच एक खाते आहे? साइन इन करा</string>
     <string name="hello_world">हॅलो वर्ल्ड</string>
     <string name="welcome_back">परत स्वागत आहे</string>
-    <string name="sign_in_to_continue">सुरू ठेवण्यासाठी साइन इन करा</string>
+    <string name="sign_in_to_continue">तुमचा प्रवास सुरू ठेवण्यासाठी साइन इन करा</string>
     <string name="hello_nwelcome_back">नमस्कार, परत स्वागत आहे</string>
     <string name="sign_in">साइन इन करा</string>
     <string name="dont_have_an_account_sign_up">खाते नाही? साइन अप करा</string>
@@ -20,7 +21,16 @@
     <string name="change_language">भाषा बदला</string>
     <string name="capture_image">प्रतिमा कॅप्चर करा</string>
     <string name="upload_image">प्रतिमा अपलोड करा</string>
-    <string name="open_gallery">गॅलरी उघडा</string>
-    <string name="open_camera">कॅमेरा उघडा</string>
+    <string name="open_gallery">गॅलरी</string>
+    <string name="open_camera">कॅमेरा</string>
     <string name="plant_health_details">वनस्पती आरोग्य तपशील</string>
+    <string name="create_an_account">खाते तयार करा</string>
+    <string name="welcome_back_title">परत\nस्वागत</string>
+    <string name="join_carbomato">Carbomato\nमध्ये सामील व्हा</string>
+    <string name="create_account">खाते तयार करा</string>
+    <string name="back_to_sign_in">साइन इन वर परत जा</string>
+    <string name="scan_your_plant">तुमच्या वनस्पतीचे स्कॅन करा</string>
+    <string name="scan_description">AI द्वारे संचालित रोगांचा शोध घ्या आणि त्वरित उपाय मिळवा</string>
+    <string name="analysis_report">विश्लेषण अहवाल</string>
+    <string name="upload_image_prompt">विश्लेषण सुरू करण्यासाठी वनस्पती प्रतिमा अपलोड किंवा कॅप्चर करा</string>
 </resources>

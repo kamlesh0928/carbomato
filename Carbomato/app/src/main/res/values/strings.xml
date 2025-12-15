@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">Carbomato</string>
+    <string name="app_tagline">Healthy Plants, Happy You</string>
     <string name="welcome_to_carbomato_nhealthy_plants_happy_you">Welcome to Carbomato\nHealthy plants Happy you</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
@@ -8,7 +9,7 @@
     <string name="already_have_an_account_sign_in">Already have an account? Sign In</string>
     <string name="hello_world">Hello World</string>
     <string name="welcome_back">Welcome Back</string>
-    <string name="sign_in_to_continue">Sign In to continue</string>
+    <string name="sign_in_to_continue">Sign in to continue your journey</string>
     <string name="hello_nwelcome_back">Hello,\nWelcome back</string>
     <string name="sign_in">Sign In</string>
     <string name="dont_have_an_account_sign_up">Don\'t have an account? SIGN UP</string>
@@ -21,10 +22,18 @@
     <string name="upload_image">Upload Image</string>
     <string name="image_saved_successfully" translatable="false">Image Saved Successfully</string>
     <string name="detect" translatable="false">Detect</string>
-    <string name="open_gallery">Open Gallery</string>
+    <string name="open_gallery">Gallery</string>
     <string name="start_camera" translatable="false">Start Camera</string>
     <string name="precaution" translatable="false">Precaution</string>
-    <string name="open_camera">Open Camera</string>
+    <string name="open_camera">Camera</string>
     <string name="plant_health_details">Plant Health Details</string>
     <string name="create_an_account">Create an Account</string>
+    <string name="welcome_back_title">WELCOME\nBACK</string>
+    <string name="join_carbomato">JOIN\nCARBOMATO</string>
+    <string name="create_account">Create Account</string>
+    <string name="back_to_sign_in">Back to Sign In</string>
+    <string name="scan_your_plant">Scan Your Plant</string>
+    <string name="scan_description">Detect diseases and get instant remedies powered by AI</string>
+    <string name="analysis_report">Analysis Report</string>
+    <string name="upload_image_prompt">Upload or capture a plant image to begin analysis</string>
 </resources>

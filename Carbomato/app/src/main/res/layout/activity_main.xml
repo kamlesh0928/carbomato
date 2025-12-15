@@ -15,15 +15,29 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/primary_green"
-            android:paddingVertical="16dp">
+            android:paddingVertical="20dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/bungee_regular"
-                android:text="Carbomato"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/bungee_regular"
+                    android:text="@string/app_name"
+                    android:textColor="@color/white"
+                    android:textSize="26sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="@string/app_tagline"
+                    android:textColor="@color/primary_light"
+                    android:textSize="12sp" />
+            </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -36,111 +50,160 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="24dp">
+            android:padding="20dp">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Scan your plant"
-                android:textColor="@color/text_bold"
-                android:textSize="22sp"
-                android:textStyle="bold" />
+                android:layout_marginBottom="20dp"
+                app:cardBackgroundColor="@color/surface_white"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Detect diseases and get instant remedies."
-                android:textColor="@color/text_muted"
-                android:textSize="14sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/scan_your_plant"
+                        android:textColor="@color/text_bold"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:text="@string/scan_description"
+                        android:textColor="@color/text_muted"
+                        android:textSize="14sp"
+                        android:lineSpacingExtra="2dp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/image_card"
                 android:layout_width="match_parent"
-                android:layout_height="320dp"
-                android:layout_marginTop="24dp"
+                android:layout_height="360dp"
+                android:layout_marginBottom="20dp"
                 app:cardBackgroundColor="@color/white"
-                app:cardCornerRadius="24dp"
-                app:cardElevation="0dp"
-                app:strokeColor="#E0E0E0"
-                app:strokeWidth="1dp">
+                app:cardCornerRadius="20dp"
+                app:cardElevation="6dp">
 
-                <ImageView
-                    android:id="@+id/image_view"
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:padding="40dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/splash_page_image"
-                    app:tint="#EEEEEE" />
+                    android:layout_height="match_parent">
 
-                <ProgressBar
-                    android:id="@+id/progressBar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:indeterminateTint="@color/primary_green"
-                    android:visibility="gone" />
+                    <ImageView
+                        android:id="@+id/image_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="40dp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/splash_page_image"
+                        app:tint="@color/image_placeholder_tint" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/image_border" />
+
+                    <ProgressBar
+                        android:id="@+id/progressBar"
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:layout_gravity="center"
+                        android:indeterminateTint="@color/primary_green"
+                        android:visibility="gone" />
+                </FrameLayout>
             </androidx.cardview.widget.CardView>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginBottom="20dp"
                 android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/select_image_button"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="0dp"
-                    android:layout_height="60dp"
+                    android:layout_height="56dp"
                     android:layout_marginEnd="8dp"
                     android:layout_weight="1"
                     android:text="@string/open_gallery"
                     android:textColor="@color/primary_green"
-                    app:cornerRadius="12dp"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="14dp"
                     app:strokeColor="@color/primary_green"
                     app:strokeWidth="2dp" />
 
                 <Button
                     android:id="@+id/capture_image_button"
                     android:layout_width="0dp"
-                    android:layout_height="60dp"
+                    android:layout_height="56dp"
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
                     android:backgroundTint="@color/primary_green"
                     android:text="@string/open_camera"
                     android:textColor="@color/white"
-                    app:cornerRadius="12dp"
-                    app:icon="@android:drawable/ic_menu_camera"
-                    app:iconGravity="textStart" />
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="14dp" />
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/result_label"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="Analysis Report"
-                android:textColor="@color/text_bold"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-            <View
-                android:layout_width="50dp"
-                android:layout_height="3dp"
-                android:layout_marginTop="4dp"
-                android:background="@color/accent_orange"/>
-
-            <TextView
-                android:id="@+id/result_text"
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="40dp"
-                android:lineSpacingExtra="6dp"
-                android:textColor="@color/text_muted"
-                android:textSize="16sp" />
+                app:cardBackgroundColor="@color/surface_white"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="4dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:layout_marginBottom="12dp">
+
+                        <View
+                            android:layout_width="4dp"
+                            android:layout_height="24dp"
+                            android:background="@color/accent_orange"
+                            android:layout_marginEnd="12dp" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/analysis_report"
+                            android:textColor="@color/text_bold"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/result_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="8dp"
+                        android:lineSpacingExtra="6dp"
+                        android:text="@string/upload_image_prompt"
+                        android:textColor="@color/text_muted"
+                        android:textSize="15sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

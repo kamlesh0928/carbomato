@@ -17,7 +17,6 @@ import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
 import com.bumptech.glide.Glide
@@ -30,10 +29,10 @@ import kotlinx.coroutines.withContext
 class MainActivity : AppCompatActivity() {
 
     private val API_KEY = BuildConfig.GEMINI_API_KEY
-    private val CAMERA_PERMISSION_CODE = 100
 
     private lateinit var getContent: ActivityResultLauncher<Intent>
     private lateinit var captureImage: ActivityResultLauncher<Intent>
+    private lateinit var requestPermissionLauncher: ActivityResultLauncher<String>
 
     private lateinit var selectImageButton: Button
     private lateinit var captureImageButton: Button
@@ -52,6 +51,7 @@ class MainActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.progressBar)
 
         setupImagePickers()
+        setupPermissionLauncher()
 
         selectImageButton.setOnClickListener {
             val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
@@ -64,28 +64,39 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun setupPermissionLauncher() {
+        requestPermissionLauncher = registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted ->
+            if (isGranted) {
+                openCamera()
+            } else {
+                Toast.makeText(this, "Camera permission is required", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
     private fun checkCameraPermissionAndOpen() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-            openCamera()
-        } else {
-            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), CAMERA_PERMISSION_CODE)
+        when {
+            ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                openCamera()
+            }
+            else -> {
+                requestPermissionLauncher.launch(Manifest.permission.CAMERA)
+            }
         }
     }
 
     private fun openCamera() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        captureImage.launch(intent)
-        resetUI()
-    }
-
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == CAMERA_PERMISSION_CODE) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                openCamera()
-            } else {
-                Toast.makeText(this, "Camera permission is required to use this feature", Toast.LENGTH_SHORT).show()
-            }
+        if (intent.resolveActivity(packageManager) != null) {
+            captureImage.launch(intent)
+            resetUI()
+        } else {
+            Toast.makeText(this, "No camera app found", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -102,6 +113,7 @@ class MainActivity : AppCompatActivity() {
                             analyze(bitmap)
                         } catch (e: Exception) {
                             resultText.text = "Error loading image: ${e.localizedMessage}"
+                            progressBar.visibility = View.GONE
                         }
                     }
                 }
@@ -113,11 +125,12 @@ class MainActivity : AppCompatActivity() {
                 val imageBitmap = result.data?.extras?.get("data") as? Bitmap
                 if (imageBitmap != null) {
                     imageView.setImageBitmap(imageBitmap)
-                    // Launch analysis
                     lifecycleScope.launch {
                         analyze(imageBitmap)
                     }
                 }
+            } else {
+                progressBar.visibility = View.GONE
             }
         }
     }
@@ -139,18 +152,51 @@ class MainActivity : AppCompatActivity() {
 
             val response = withContext(Dispatchers.IO) {
                 generativeModel.generateContent(content {
-                    text("Analyze this plant's health...")
+                    text("""
+                        Analyze this image and determine if it's a plant. 
+                        
+                        If it IS a plant:
+                        - Identify the plant name
+                        - Assess its health condition
+                        - List any visible diseases or issues
+                        - Provide treatment recommendations
+                        - Suggest preventive care tips
+                        
+                        If it's NOT a plant:
+                        - Simply state that this is not a plant image
+                        
+                        Format the response clearly with proper sections.
+                    """.trimIndent())
                     image(bitmap)
                 })
             }
 
-            resultText.text = Html.fromHtml(response.text ?: "No response text", Html.FROM_HTML_MODE_COMPACT)
+            val analysisResult = response.text ?: "No response received"
+            resultText.text = Html.fromHtml(
+                formatAnalysisText(analysisResult),
+                Html.FROM_HTML_MODE_COMPACT
+            )
 
         } catch (e: Exception) {
-            resultText.text = "Analysis Failed. Please check your API Key.\n\nDetails: ${e.localizedMessage}"
+            val errorMessage = when {
+                e.message?.contains("API") == true ->
+                    "API Error: Please check your API key in local.properties"
+                e.message?.contains("network") == true ->
+                    "Network Error: Please check your internet connection"
+                else ->
+                    "Analysis Failed: ${e.localizedMessage}"
+            }
+            resultText.text = errorMessage
             e.printStackTrace()
         } finally {
             progressBar.visibility = View.GONE
         }
+    }
+
+    private fun formatAnalysisText(text: String): String {
+        return text
+            .replace("**", "<b>")
+            .replace("*", "</b>")
+            .replace("\n", "<br>")
     }
 }

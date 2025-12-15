@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Carbomato</string>
-    <string name="email">ইমেইল</string>
-    <string name="welcome_to_carbomato_nhealthy_plants_happy_you">Carbomato স্বাগতম সুস্থ গাছপালা আপনি খুশি</string>
+    <string name="app_tagline">সুস্থ উদ্ভিদ, সুখী আপনি</string>
+    <string name="welcome_to_carbomato_nhealthy_plants_happy_you">Carbomato-তে স্বাগতম\nসুস্থ গাছপালা আপনি খুশি</string>
     <string name="username">ব্যবহারকারীর নাম</string>
     <string name="password">পাসওয়ার্ড</string>
     <string name="login">লগইন করুন</string>
@@ -10,17 +10,27 @@
     <string name="already_have_an_account_sign_in">ইতিমধ্যে একটি একাউন্ট আছে? সাইন ইন করুন</string>
     <string name="hello_world">হ্যালো ওয়ার্ল্ড</string>
     <string name="welcome_back">ফিরে আসার জন্য স্বাগতম</string>
-    <string name="sign_in_to_continue">চালিয়ে যেতে সাইন ইন করুন</string>
+    <string name="sign_in_to_continue">আপনার যাত্রা চালিয়ে যেতে সাইন ইন করুন</string>
     <string name="hello_nwelcome_back">হ্যালো, ফিরে আসার জন্য স্বাগতম</string>
     <string name="sign_in">সাইন ইন করুন</string>
     <string name="dont_have_an_account_sign_up">একটি অ্যাকাউন্ট নেই? সাইন আপ করুন</string>
     <string name="hello">হ্যালো,</string>
     <string name="sign_up_to_start">শুরু করতে সাইন আপ করুন</string>
+    <string name="email">ইমেইল</string>
     <string name="sign_up">সাইন আপ করুন</string>
     <string name="change_language">ভাষা পরিবর্তন</string>
     <string name="capture_image">ছবি ক্যাপচার করুন</string>
-    <string name="upload_image">ছবি আপলাড</string>
-    <string name="open_gallery">গ্যালারি খুলুন</string>
-    <string name="open_camera">খোলা ক্যামেরা</string>
+    <string name="upload_image">ছবি আপলোড</string>
+    <string name="open_gallery">গ্যালারি</string>
+    <string name="open_camera">ক্যামেরা</string>
     <string name="plant_health_details">উদ্ভিদ স্বাস্থ্য বিবরণ</string>
+    <string name="create_an_account">অ্যাকাউন্ট তৈরি করুন</string>
+    <string name="welcome_back_title">ফিরে\nস্বাগতম</string>
+    <string name="join_carbomato">Carbomato-তে\nযোগ দিন</string>
+    <string name="create_account">অ্যাকাউন্ট তৈরি করুন</string>
+    <string name="back_to_sign_in">সাইন ইন-এ ফিরে যান</string>
+    <string name="scan_your_plant">আপনার উদ্ভিদ স্ক্যান করুন</string>
+    <string name="scan_description">AI দ্বারা চালিত রোগ সনাক্ত করুন এবং তাৎক্ষণিক প্রতিকার পান</string>
+    <string name="analysis_report">বিশ্লেষণ রিপোর্ট</string>
+    <string name="upload_image_prompt">বিশ্লেষণ শুরু করতে উদ্ভিদের ছবি আপলোড বা ক্যাপচার করুন</string>
 </resources>
