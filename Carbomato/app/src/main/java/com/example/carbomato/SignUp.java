@@ -5,43 +5,45 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class SignUp extends AppCompatActivity {
+
     TextInputLayout tilUsername, tilEmail, tilPassword, tilConfirm;
     Button btnSignUp, btnLogin;
 
-    // Firebase
     FirebaseFirestore db;
-    HelperClass helperClass;
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        // Initialize Firestore
         db = FirebaseFirestore.getInstance();
-        helperClass = new HelperClass();
+        firebaseAuth = FirebaseAuth.getInstance();
 
         tilUsername = findViewById(R.id.tilUsername);
         tilEmail = findViewById(R.id.tilEmail);
         tilPassword = findViewById(R.id.tilPassword);
         tilConfirm = findViewById(R.id.tilConfirmPassword);
-
         btnSignUp = findViewById(R.id.btn_sign_up);
         btnLogin = findViewById(R.id.btn_login);
 
-        // Navigate to Login
         btnLogin.setOnClickListener(v -> {
             Intent intent = new Intent(SignUp.this, Login.class);
             startActivity(intent);
             finish();
         });
 
-        // Perform Sign Up
         btnSignUp.setOnClickListener(v -> registerUser());
     }
 
@@ -51,42 +53,61 @@ public class SignUp extends AppCompatActivity {
         String password = (tilPassword.getEditText() != null) ? tilPassword.getEditText().getText().toString().trim() : "";
         String confirmPassword = (tilConfirm.getEditText() != null) ? tilConfirm.getEditText().getText().toString().trim() : "";
 
-        // Validation
-        if(TextUtils.isEmpty(username)) {
+        // --- Validations ---
+        if (TextUtils.isEmpty(username)) {
             tilUsername.setError("Enter Username");
             return;
-        } else { tilUsername.setError(null); }
+        } else {
+            tilUsername.setError(null);
+        }
 
-        if(TextUtils.isEmpty(email)) {
+        if (TextUtils.isEmpty(email)) {
             tilEmail.setError("Enter Email");
             return;
-        } else { tilEmail.setError(null); }
+        } else {
+            tilEmail.setError(null);
+        }
 
-        if(TextUtils.isEmpty(password)) {
+        if (TextUtils.isEmpty(password)) {
             tilPassword.setError("Enter Password");
             return;
-        } else { tilPassword.setError(null); }
+        } else {
+            tilPassword.setError(null);
+        }
 
-        if(!password.equals(confirmPassword)) {
+        if (!password.equals(confirmPassword)) {
             tilConfirm.setError("Passwords do not match");
             return;
-        } else { tilConfirm.setError(null); }
+        } else {
+            tilConfirm.setError(null);
+        }
 
-        // Save to Firebase Firestore
-        helperClass.setUSERNAME(username);
-        helperClass.setEMAIL(email);
-        helperClass.setPASSWORD(password);
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
 
-        db.collection("users").document(username).set(helperClass)
-                .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(SignUp.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
-                    // Go to Main Activity
-                    Intent intent = new Intent(SignUp.this, MainActivity.class);
-                    startActivity(intent);
-                    finish();
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(SignUp.this, "Registration Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        Map<String, Object> userMap = new HashMap<>();
+                        userMap.put("username", username);
+                        userMap.put("email", email);
+
+                        db.collection("users").document(username).set(userMap)
+                                .addOnSuccessListener(aVoid -> {
+                                    Toast.makeText(SignUp.this, "Registered Successfully", Toast.LENGTH_SHORT).show();
+
+                                    Intent intent = new Intent(SignUp.this, MainActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                                    startActivity(intent);
+                                    finish();
+                                })
+                                .addOnFailureListener(e -> {
+                                    Toast.makeText(SignUp.this, "Database Error: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                                });
+
+                    } else {
+                        if (task.getException() != null) {
+                            Toast.makeText(SignUp.this, "Registration Failed: " + task.getException().getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
                 });
     }
 }
