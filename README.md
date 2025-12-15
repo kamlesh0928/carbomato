@@ -9,7 +9,7 @@ It's easy to help your plants grow well using Carbomato. Only by taking a photo 
 - User-Friendly: Simple interface designed for ease of use.
 
 ## Demo
-Check out the demo of our app: [Carbomato Demo](https://drive.google.com/file/d/1ir2UTvl_xk_QSZVLDS5ZepeErI-KI_j6/view?usp=sharing)
+Check out the demo video of our app: [Carbomato Demo Video](https://drive.google.com/file/d/1PRqQkCX03u4UvlChdUtLApsJbF-ff2jC/view?usp=sharing)
 
 ## Technology Stack
 - **Frontend:**
